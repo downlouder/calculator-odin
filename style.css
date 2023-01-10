@@ -5,10 +5,12 @@ body {
     justify-content: space-between;
     border-collapse: collapse;
 }
-#block {
+#calculator {
     width: 400px;
     height: 600px;
     display: flex;
+    border: 20px solid #1C1B1F;
+    border-radius: 20px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -17,10 +19,10 @@ body {
 
 }
 #input {
-    height: 35%;
+    height: 45%;
     width: 100%;
     background-color: #33313D;
-    border-radius: 0 0 16% 16%;
+    border-radius: 0 0 24px 24px;
 }
 #buttons {
     display: flex;
@@ -28,12 +30,12 @@ body {
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
-    gap: 1%;
+    gap: 0.1%;
 }
 .button {
     box-sizing: border-box;
-    border: 1px solid black;
-    width: 20%;
-    height: 20%;
-    border-radius: 8% 20%;
+    background-color: #ADA8C1;
+    width: 21%;
+    height: 17%;
+    border-radius: 45%;
 }
