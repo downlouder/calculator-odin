@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato" rel="stylesheet">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
@@ -11,33 +15,35 @@
 <body>
     <main class="main">
     <div id="calculator">
-        <div id="input"></div>
-        <div id="buttons">
+        <div class="input">
+            <input type="text">
+        </div>
+        <div class="buttons">
             <!-- <div class="row"> -->
-                <div class="button oper" id="ac">AC</div>
-                <div class="button oper">( )</div>
-                <div class="button oper">%</div>
-                <div class="button oper">÷</div>
+                <button class="button oper" id="ac">AC</button>
+                <button class="button oper" id="brackets">( )</button>
+                <button class="button oper" id="percents">%</button>
+                <button class="button oper" id="divide">÷</button>
 
-                <div class="button">7</div>
-                <div class="button">8</div>
-                <div class="button">9</div>
-                <div class="button oper">×</div>
+                <button class="button" id="7">7</button>
+                <button class="button" id="8">8</button>
+                <button class="button" id="9">9</button>
+                <button class="button oper" id="multiple">×</button>
 
-                <div class="button">4</div>
-                <div class="button">5</div>
-                <div class="button">6</div>
-                <div class="button oper">-</div>
+                <button class="button" id="4">4</button>
+                <button class="button" id="5">5</button>
+                <button class="button" id="6">6</button>
+                <button class="button oper" id="minus">-</button>
 
-                <div class="button">1</div>
-                <div class="button">2</div>
-                <div class="button">3</div>
-                <div class="button oper">+</div>
+                <button class="button" id="1">1</button>
+                <button class="button" id="2">2</button>
+                <button class="button" id="3">3</button>
+                <button class="button oper" id="plus">+</button>
 
-                <div class="button">0</div>
-                <div class="button" id="dat">.</div>
-                <div class="button" id="erase">&#x232B</div>
-                <div class="button" id="equal">=</div>
+                <button class="button" id="0">0</button>
+                <button class="button" id="dat">.</button>
+                <button class="button" id="erase">&#x232B</button>
+                <button class="button oper" id="equal">=</button>
             <!-- </div> -->
         </div>
     </div>
@@ -48,11 +54,10 @@
             <script>
               document.write(new Date().getFullYear())
             </script>
-            downlouder
+            <a href="https://github.com/downlouder" target="_blank">
+                downlouder
+            </a>  
         </p>
-        <a href="https://github.com/downlouder" target="_blank">
-            <i class="fab fa-github"></i>
-        </a>  
     </footer>
 </body>
 </html>
