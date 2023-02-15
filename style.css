@@ -47,6 +47,17 @@ button {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
+.themes {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 36px;
+    height: 36px;
+    fill: #404040;
+}
+svg {
+    height: 36px;
+}
 .input {
     display: flex;
     flex-direction: column-reverse;
@@ -55,6 +66,7 @@ button {
     border-bottom: 2px solid var(--light-main-color);
 }
 input {
+    color: #202020;
     padding-top: calc(28% - 42px);
     text-align: right;
     font-size: 36px;
