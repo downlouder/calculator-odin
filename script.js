@@ -1,36 +1,17 @@
-const theme = document.querySelector('.themes');
-
-const zero = document.getElementById('0');
-const one = document.getElementById('1');
-const two = document.getElementById('2');
-const three = document.getElementById('3');
-const four = document.getElementById('4');
-const five = document.getElementById('5');
-const six = document.getElementById('6');
-const seven = document.getElementById('7');
-const eight = document.getElementById('8');
-const nine = document.getElementById('9');
-
-const equal = document.getElementById('equal');
-const plus = document.getElementById('plus');
-const minus = document.getElementById('minus');
-const multiple = document.getElementById('multiple');
-const divide = document.getElementById('divide');
-const clear = document.getElementById('ac');
-const erase = document.getElementById('erase');
-const dat = document.getElementById('dat');
-const percents = document.getElementById('percents');
-const brackets = document.getElementById('brackets');
-
-function addNumbers(...num) {
-
-}
+const numbers = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
+const input = document.getElementById('input');
 
 function calculator() {
+    let firstNumber = '';
+    let secondNumber = '';
+    let currentOperator = '';
+    let isFinish = false;
+    let bracketsCount = 0;
+    const theme = document.querySelector('.themes');
     function swapStyleSheet(sheet) {
         document.getElementById('theme').setAttribute('href', `css/${sheet}.css`);
     }
-    
     theme.addEventListener('click', () => {
         if (theme.className === 'themes light') {
             theme.className = 'themes dark';
@@ -43,11 +24,95 @@ function calculator() {
         }
     })
 
-    // addNumbers();
-    // subsNumbers();
-    // multiplyNumbers();
-    // divideNumbers();
-    // sum();
+    function roundResult(number) {
+        return Math.round(number * 1000) / 1000;
+    }
+    function setBrackets() {
+        bracketsCount++;
+        setTimeout(() => {
+            if (bracketsCount === 1) {
+                input.value += '(';
+            } else if (bracketsCount === 2) {
+                input.value += ')';
+            }
+            bracketsCount = 0;
+        }, 500);
+    }
+    function useErase() {
+        input.value = input.value.toString().slice(0, -1);
+    }
+    function useClear() {
+        input.value = '';
+        firstNumber = '';
+        secondNumber = '';
+        currentOperator = '';
+        isFinish = false;
+    
+    }
+    numbers.forEach(number => {
+        number.addEventListener('click', () => {
+            if(secondNumber === '' && currentOperator === '') {
+                if(number.id === 'dat') {
+                    input.value += '.';
+                    firstNumber += '.';
+                } else {
+                    input.value += number.id;
+                    firstNumber += number.id;
+                }
+            } else if (firstNumber !== '' && secondNumber !== '' && isFinish) {
+                
+            } else {
+                if(number.id === 'dat') {
+                    input.value += '.';
+                    secondNumber += '.';
+                } else {
+                    input.value += number.id;
+                    secondNumber += number.id;
+                }
+            }
+            console.log(firstNumber, secondNumber, currentOperator, isFinish);
+        })
+    });
+    operators.forEach(operator => {
+        operator.addEventListener('click', () => {
+            console.log(operator.id)
+            if (operator.id === 'ac') {
+                useClear();
+            } else if (operator.id === 'erase') {
+                useErase();
+            } else if (operator.id === 'brackets') {
+                setBrackets();
+            } else if (operator.id === 'equal') {
+                if (currentOperator === '+') {
+                    firstNumber = (+firstNumber) + (+secondNumber);
+                    secondNumber = '';
+                    input.value = firstNumber;
+                } else if (currentOperator === '÷' && secondNumber == '0') {
+                    alert('You can\'t divide by 0')
+                    useClear();
+                } else if (currentOperator === '-') {
+                    firstNumber = (+firstNumber) - (+secondNumber);
+                    secondNumber = '';
+                    input.value = firstNumber;
+                } else if (currentOperator === '×') {
+                    firstNumber = (+firstNumber) * (+secondNumber);
+                    secondNumber = '';
+                    input.value = firstNumber;
+                } else if (currentOperator === '÷') {
+                    firstNumber = (+firstNumber) / (+secondNumber);
+                    secondNumber = '';
+                    input.value = firstNumber;
+                }
+                 
+            } else {
+                currentOperator = operator.textContent;
+                input.value += operator.textContent;
+            }
+            console.log(firstNumber, secondNumber, currentOperator, isFinish);
+        })
+    })
+    console.log(operators);
+    console.log(numbers);
 }
 
 calculator()
