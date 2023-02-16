@@ -59,7 +59,11 @@ function calculator() {
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             if (button.id === 'equal') {
-                useEqual();
+                try {
+                    useEqual();
+                } catch (error) {
+                    resultBlock.textContent = 'Enter another number';
+                }
             } else if (button.id === 'ac') {
                 useClear();
             } else if (button.id === 'erase') {
@@ -78,7 +82,6 @@ function calculator() {
                 input.value += lastSign;
             } 
             if(preLastSign === '+' || preLastSign === '*' || preLastSign === '/' || preLastSign === '-' || preLastSign === '.') {
-                console.log('it another work')
                 if (lastSign === '+' || lastSign === '*' || lastSign === '/' || lastSign === '-' || lastSign === '.') {
                     input.value = input.value.slice(0, -2);
                     input.value += lastSign;
