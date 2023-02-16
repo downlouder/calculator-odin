@@ -142,6 +142,9 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+    input {
+        pointer-events: none;
+    }
     footer {
         display: none;
     }

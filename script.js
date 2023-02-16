@@ -33,6 +33,15 @@ function calculator() {
         secondNumber = '';
         currentOperator = '';
     }
+    function useEqual() {
+        let result = eval(input.textContent);
+        if (!isFinite(result)) {
+            resultBlock.textContent = 'You can\'t divide by zero';
+        } else {
+            input.textContent = result;
+            resultBlock.textContent = input.textContent;
+        }
+    }
     switchBtnTheme.addEventListener('click', () => {
         if (switchBtnTheme.className === 'themes light') {
             switchBtnTheme.className = 'themes dark';
@@ -47,13 +56,7 @@ function calculator() {
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             if (button.id === 'equal') {
-                let result = eval(input.value);
-                if (!isFinite(result)) {
-                    resultBlock.textContent = 'You can\'t divide by zero';
-                } else {
-                    input.value = result;
-                    resultBlock.textContent = input.value;
-                }
+                useEqual();
             } else if (button.id === 'ac') {
                 useClear();
             } else if (button.id === 'erase') {
@@ -76,6 +79,28 @@ function calculator() {
             }
         })
     })
+    function inputCalculatorValues(e) {
+        let chrTyped, chrCode = 0, evt = e ? e : event;
+        if (evt.charCode !== null)     chrCode = evt.charCode;
+        else if (evt.which !== null)   chrCode = evt.which;
+        else if (evt.keyCode !== null) chrCode = evt.keyCode;
+        if (chrCode === 0) chrTyped = 'SPECIAL KEY';
+        else chrTyped = String.fromCharCode(chrCode);
+        input.status='inputCalculatorValues: chrTyped = '+chrTyped;
+        if (chrTyped.match(/^[0-9\%\\*\\/)\(+._-]+$/g)) return true;
+        if (evt.altKey || evt.ctrlKey || chrCode<28) return true;
+        if (evt.preventDefault) evt.preventDefault();
+        evt.returnValue=false;
+        return false;
+    }  
+    function addEventHandler(elem,eventType,handler) {
+        if (elem.addEventListener) elem.addEventListener (eventType,handler,false);
+        else if (elem.attachEvent) elem.attachEvent ('on'+eventType,handler); 
+        else return 0;
+        return 1;
+    }
+    addEventHandler(input,'keypress',inputCalculatorValues);
+       
 }
 
 calculator();
