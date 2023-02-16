@@ -74,7 +74,11 @@ function calculator() {
             outputContent = input.value.split('');
             preLastSign = outputContent[outputContent.length-2];
             lastSign = outputContent[outputContent.length-1];
+            if (preLastSign === '/' && lastSign === '-') {
+                input.value += lastSign;
+            } 
             if(preLastSign === '+' || preLastSign === '*' || preLastSign === '/' || preLastSign === '-' || preLastSign === '.') {
+                console.log('it another work')
                 if (lastSign === '+' || lastSign === '*' || lastSign === '/' || lastSign === '-' || lastSign === '.') {
                     input.value = input.value.slice(0, -2);
                     input.value += lastSign;
