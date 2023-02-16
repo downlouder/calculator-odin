@@ -40,7 +40,7 @@ button {
 .themes {
     position: absolute;
     top: 24px;
-    right: 24px;
+    left: 24px;
     width: 36px;
     height: 36px;
     fill: var(--fill-color);
@@ -49,19 +49,23 @@ button {
 svg {
     height: 36px;
 }
-.input {
+.output {
     display: flex;
     flex-direction: column-reverse;
     height: 28%;
     width: 100%;
     border-bottom: 2px solid var(--fill-color);
 }
+.last-result {
+    color: var(--result-color);
+    font-size: 24px;
+    align-self: flex-end;
+}
 input {
     color: var(--fill-color);
-    padding-top: calc(28% - 42px);
     text-align: right;
-    font-size: 36px;
-    height: 70%;
+    font-size: 42px;
+    height: 40%;
     width: 100%;
     background-color: transparent;
     border: none;
