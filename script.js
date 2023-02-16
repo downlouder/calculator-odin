@@ -12,6 +12,9 @@ function calculator() {
     function swapStyleSheet(sheet) {
         theme.setAttribute('href', `css/${sheet}.css`);
     }
+    function roundResult(number) {
+        return Math.round(number * 100000) / 100000;
+    }
     function setBrackets() {
         bracketsCount++;
         setTimeout(() => {
@@ -38,7 +41,7 @@ function calculator() {
         if (!isFinite(result)) {
             resultBlock.textContent = 'You can\'t divide by zero';
         } else {
-            input.value = result;
+            input.value = roundResult(result);
             resultBlock.textContent = input.value;
         }
     }
