@@ -40,6 +40,15 @@ function calculator() {
     }
     function useErase() {
         input.value = input.value.toString().slice(0, -1);
+        // if (secondNumber === '' && currentOperator === '') {
+        //     firstNumber = firstNumber.toString().slice(0, -1);
+        //     input.value = firstNumber;
+        // } else if (currentOperator !== '' && firstNumber !== '') {
+        //     secondNumber = secondNumber.toString().slice(0, -1);
+        //     input.value = secondNumber;
+        // } else if (currentOperator !== '') {
+        //     currentOperator = '';
+        // }
     }
     function useClear() {
         input.value = '';
@@ -51,7 +60,11 @@ function calculator() {
     }
     numbers.forEach(number => {
         number.addEventListener('click', () => {
-            if(secondNumber === '' && currentOperator === '') {
+            if (isFinish) {
+                currentOperator = '';
+                isFinish = false;
+            }
+            if (secondNumber === '' && currentOperator === '') {
                 if(number.id === 'dat') {
                     input.value += '.';
                     firstNumber += '.';
@@ -59,7 +72,6 @@ function calculator() {
                     input.value += number.id;
                     firstNumber += number.id;
                 }
-            } else if (firstNumber !== '' && secondNumber !== '' && isFinish) {
                 
             } else {
                 if(number.id === 'dat') {
@@ -83,31 +95,27 @@ function calculator() {
             } else if (operator.id === 'brackets') {
                 setBrackets();
             } else if (operator.id === 'equal') {
-                if (currentOperator === '+') {
-                    firstNumber = (+firstNumber) + (+secondNumber);
-                    secondNumber = '';
-                    input.value = firstNumber;
-                } else if (currentOperator === '÷' && secondNumber == '0') {
+                if (secondNumber === '') secondNumber = firstNumber;
+                if (currentOperator === '÷' && secondNumber == '0') {
                     alert('You can\'t divide by 0')
                     useClear();
+                } else if (currentOperator === '+') {
+                    firstNumber = (+firstNumber) + (+secondNumber);
                 } else if (currentOperator === '-') {
-                    firstNumber = (+firstNumber) - (+secondNumber);
-                    secondNumber = '';
-                    input.value = firstNumber;
+                    firstNumber = firstNumber - secondNumber;
                 } else if (currentOperator === '×') {
-                    firstNumber = (+firstNumber) * (+secondNumber);
-                    secondNumber = '';
-                    input.value = firstNumber;
+                    firstNumber = firstNumber * secondNumber;
                 } else if (currentOperator === '÷') {
-                    firstNumber = (+firstNumber) / (+secondNumber);
-                    secondNumber = '';
-                    input.value = firstNumber;
+                    firstNumber = firstNumber / secondNumber;
                 }
-                 
+                secondNumber = '';
+                input.value = firstNumber;
+                isFinish = true;
             } else {
                 currentOperator = operator.textContent;
                 input.value += operator.textContent;
             }
+            
             console.log(firstNumber, secondNumber, currentOperator, isFinish);
         })
     })
