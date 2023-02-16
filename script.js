@@ -5,6 +5,9 @@ function calculator() {
     const switchBtnTheme = document.querySelector('.themes');
     const resultBlock = document.getElementById('result');
     let bracketsCount = 0;
+    let outputContent = '';
+    let lastSign = '';
+    let preLastSign = '';
 
     function swapStyleSheet(sheet) {
         theme.setAttribute('href', `css/${sheet}.css`);
@@ -44,26 +47,32 @@ function calculator() {
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             if (button.id === 'equal') {
-                input.value = eval(input.value);
-                resultBlock.textContent = input.value;
+                let result = eval(input.value);
+                if (!isFinite(result)) {
+                    resultBlock.textContent = 'You can\'t divide by zero';
+                } else {
+                    input.value = result;
+                    resultBlock.textContent = input.value;
+                }
             } else if (button.id === 'ac') {
                 useClear();
             } else if (button.id === 'erase') {
                 useErase();
             } else if (button.id === 'brackets') {
                 setBrackets();
-            } else if (button.id === 'dat') {
-                input.value += '.';
-            } else if (button.id === 'plus') {
-                input.value += '+';
-            } else if (button.id === 'minus') {
-                input.value += '-';
-            } else if (button.id === 'divide') {
-                input.value += '/';
-            } else if (button.id === 'multiple') {
-                input.value += '*';
+            } else if (button.id === 'percents') {
+                input.value += '%';
             } else {
                 input.value += button.id;
+            }
+            outputContent = input.value.split('');
+            preLastSign = outputContent[outputContent.length-2];
+            lastSign = outputContent[outputContent.length-1];
+            if(preLastSign === '+' || preLastSign === '*' || preLastSign === '/' || preLastSign === '-' || preLastSign === '.') {
+                if (lastSign === '+' || lastSign === '*' || lastSign === '/' || lastSign === '-' || lastSign === '.') {
+                    input.value = input.value.slice(0, -2);
+                    input.value += lastSign;
+                }
             }
         })
     })
