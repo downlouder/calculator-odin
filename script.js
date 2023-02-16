@@ -65,7 +65,6 @@ function calculator() {
             } else {
                 input.value += button.id;
             }
-            console.log(button);
         })
     })
 }
