@@ -34,12 +34,12 @@ function calculator() {
         currentOperator = '';
     }
     function useEqual() {
-        let result = eval(input.textContent);
+        let result = eval(input.value);
         if (!isFinite(result)) {
             resultBlock.textContent = 'You can\'t divide by zero';
         } else {
-            input.textContent = result;
-            resultBlock.textContent = input.textContent;
+            input.value = result;
+            resultBlock.textContent = input.value;
         }
     }
     switchBtnTheme.addEventListener('click', () => {
