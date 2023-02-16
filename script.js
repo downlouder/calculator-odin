@@ -79,6 +79,11 @@ function calculator() {
             }
         })
     })
+    input.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter' || e.key === '=') {
+            useEqual();
+        }
+    })
     function inputCalculatorValues(e) {
         let chrTyped, chrCode = 0, evt = e ? e : event;
         if (evt.charCode !== null)     chrCode = evt.charCode;
