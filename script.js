@@ -15,17 +15,6 @@ function calculator() {
     function roundResult(number) {
         return Math.round(number * 100000) / 100000;
     }
-    function setBrackets() {
-        bracketsCount++;
-        setTimeout(() => {
-            if (bracketsCount === 1) {
-                input.value += '(';
-            } else if (bracketsCount === 2) {
-                input.value += ')';
-            }
-            bracketsCount = 0;
-        }, 500);
-    }
     function useErase() {
         input.value = input.value.toString().slice(0, -1);
     }
@@ -102,7 +91,7 @@ function calculator() {
         if (chrCode === 0) chrTyped = 'SPECIAL KEY';
         else chrTyped = String.fromCharCode(chrCode);
         input.status='inputCalculatorValues: chrTyped = '+chrTyped;
-        if (chrTyped.match(/^[0-9\%\\*\\/)\(+._-]+$/g)) return true;
+        if (chrTyped.match(/^[0-9\%\\*\\/)\(+.-]+$/g)) return true;
         if (evt.altKey || evt.ctrlKey || chrCode<28) return true;
         if (evt.preventDefault) evt.preventDefault();
         evt.returnValue=false;

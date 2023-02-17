@@ -19,6 +19,11 @@ body {
 }
 button {
     border: none;
+    transition: all 200ms;
+    position: relative;
+}
+button:active {
+    top: 2px;
 }
 
 /* CALCULATOR */
